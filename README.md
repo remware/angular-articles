@@ -1,4 +1,4 @@
-# Demo web app angular-articles
+# Demo angular-articles
 
 This example reads articles form RoR backend ( or any other known REST API ) and pushes to frontend using angular js
 
@@ -8,6 +8,6 @@ This example reads articles form RoR backend ( or any other known REST API ) and
 - footables for tables
 - angular chart for charts
 
-##cDependencies:
+##Dependencies:
 - bower to manage dependencies
 - jquery
