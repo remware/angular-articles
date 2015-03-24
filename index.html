@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="store">
+  <head>
+    <title>List of articles (Angular JS)</title>
+    <!-- Twiter bootstrap for basic styling. -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  </head>
+  <body>
+  	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+  	<script type="text/javascript" src="readarticles.js"></script>
+    <div id="content" ng-controller="StoreController as store">
+		<h3>
+			<b> Articles List using Angular JS</b>
+		</h3>
+		<hr>
+
+		<div  id="display_all" ng-repeat="listart in store.listarts | orderBy:'views'" ng-hide="listart.language" >
+          <h4> {{listart.title}}</h4>
+          <h5> {{listart.views}}
+          	    <img ng-src="{{listart.images[0].thumb}}" ng-show="listart.canEdit">
+          </h5>
+          <p> {{listart.description}}</p>
+		</div>		
+	</div>
+	<hr>
+	<div id="comments">
+			This is my default comment, check your js
+	</div>
+
+  </body>
+</html>
+
+
