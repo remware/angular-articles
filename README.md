@@ -1,11 +1,13 @@
 # Demo web app angular-articles
 
-This example reads articles form RoR backend and pushes to frontend using angular js
--- uses angular-translate for internationalization
--- bootstrap for responsiveness 
--- footables for tables
--- angular chart for charts
+This example reads articles form RoR backend ( or any other known REST API ) and pushes to frontend using angular js
 
-Dependencies:
--- uses bower to manage dependencies
---- jquery
+## Technologies used
+- angular-translate for internationalization
+- bootstrap for responsiveness 
+- footables for tables
+- angular chart for charts
+
+##cDependencies:
+- bower to manage dependencies
+- jquery
