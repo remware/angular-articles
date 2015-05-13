@@ -17,22 +17,27 @@
   $translateProvider.preferredLanguage('en');
   });
 
-  app.controller('CommentsController', function() {
+  var appControllers = {};
+  // you can pass here the scope as well
+  appControllers.CommentsController = function() {
     this.selectComment = function(current) {
 		this.tab = current || 1;
 	};
 	this.isSelected = function(checkComment) {
 		return checkComment == this.tab;
 	}
-  });
+  };
   
-  app.controller('StoreController', function ($scope, $translate) {
+  appControllers.StoreController = function ($scope, $translate) {
 	this.listarts = articles;   
 	$scope.changeLanguage = function (key) {
      $translate.use(key);
     };
-  });
-
+  };
+  
+ //  add all controllers at once
+ app.controller(appControllers);
+ 
   var articles = [
   {
   	title: 'What is diabetes',
