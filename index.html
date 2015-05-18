@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html ng-app="store">
+﻿<!DOCTYPE html>
+<html ng-app="articles">
   <head>
     <title>List of articles (Angular JS)</title>
     <!-- Twiter bootstrap for basic styling. -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
   </head>
   <body>
-  	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-translate/angular-translate.min.js"></script>
+  	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="bower_components/angular-translate/angular-translate.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.js">></script>
   	<script type="text/javascript" src="readarticles.js"></script>
-    <div id="content" ng-controller="StoreController as store">
+    <div id="content">
 		<h3>
 			<b> Articles List using Angular JS</b>
 		</h3>
 		<hr>
 
-		<div  id="display_all" ng-repeat="listart in store.listarts | orderBy:'views'" ng-hide="listart.language" >
+		<div  id="display_all" ng-repeat="listart in $scope.listarts | orderBy:'views'" ng-hide="listart.language" >
           <h4> {{listart.title}}</h4>
           <h5> {{listart.views}}
           	    <img ng-src="{{listart.images[0].thumb}}" ng-show="listart.canEdit">
@@ -24,12 +25,13 @@
 		</div>		
 	</div>
 	<hr>
-	<div id="comments" ng-controlller="CommentsController as commenter">
-	   <li ng-class="{active: tabber.isSet(1)}">
-			This is my default comment, check your js
-		</li>	
-	</div>
-
+	<div id="all_comments">
+	 <div ng-view> </div>  
+	</div> 
+	<hr>
+    <div class="footer">
+		<a href="#/en"> english </a> <a href="#/es"> español </a>
+	</div>	
   </body>
 </html>
 

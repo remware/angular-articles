@@ -1,6 +1,6 @@
 (function(){
-  var app = angular.module('store', ['pascalprecht.translate']);
-
+  var app = angular.module('articles', ['ngRoute','pascalprecht.translate']);
+  // using seed translations
   app.config(function ($translateProvider) {
   $translateProvider.translations('en', {
     TITLE: 'Hello',
@@ -16,29 +16,26 @@
   });
   $translateProvider.preferredLanguage('en');
   });
-
-  var appControllers = {};
-  // you can pass here the scope as well
-  appControllers.CommentsController = function() {
-    this.selectComment = function(current) {
-		this.tab = current || 1;
-	};
-	this.isSelected = function(checkComment) {
-		return checkComment == this.tab;
-	}
-  };
+  // using routes
+  app.config(function($routeProvider, $locationProvider) {
+	$routeProvider
+		.when('/',
+		{
+			controller: 'CommentsController',
+			templateUrl: 'partials/Comments.html'
+		})
+		.when('/es',
+		{
+			controller: 'CommentsController',
+			templateUrl: 'partials/Comentarios.html'
+		})
+		.otherwise({ redirectTo: '/' });
+	// configure html5 to get links working on jsfiddle
+	//$locationProvider.html5Mode(true);
+  });
   
-  appControllers.StoreController = function ($scope, $translate) {
-	this.listarts = articles;   
-	$scope.changeLanguage = function (key) {
-     $translate.use(key);
-    };
-  };
   
- //  add all controllers at once
- app.controller(appControllers);
- 
-  var articles = [
+  var articlesList = [  
   {
   	title: 'What is diabetes',
   	author: 'rem',
@@ -69,8 +66,32 @@
   	{
   		right: 'assets/arrow_right_green.png',
   		left: 'assets/arrow_left_green.png'
-  	}  	]
+  	} ]
   }
   ]	
-})();
+  var appControllers = {};
+  // you can pass here the scope as well
+  appControllers.CommentsController = function($scope, $route, $translate) {
+	$scope.listarts = articlesList;   
+	$scope.changeLanguage = function (key) {
+     $translate.use(key);
+    };
+    this.selectComment = function(current) {
+		this.tab = current || 1;
+	};
+	this.isSelected = function(checkComment) {
+		return checkComment == this.tab;
+	};
+	$scope.addComment = function() {
+		$scope.comments.push(
+		{ comment: $scope.newComment.comment})
+	};
+  };
+  
+//  add all controllers at once
+ app.controller(appControllers);
 
+  }
+)();
+
+  

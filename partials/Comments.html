@@ -1,0 +1,13 @@
+<div class="container">
+	<h3> Comments </h3>
+	Enter your comment: <input type="text" data-ng-model="newComment.comment"></input>
+	<br/>
+	<button data-ng-click="addComment()"> Add it </button>
+	<br />
+	Previous
+	<div id="comments" >
+	   <li ng-class="{active: tabber.isSet(1)}" ng-repeat="comment in comments">
+			{{$index}}
+		</li>			
+	</div>	
+</div>
