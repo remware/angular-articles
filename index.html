@@ -16,7 +16,7 @@
 		</h3>
 		<hr>
 
-		<div  id="display_all" ng-repeat="listart in $scope.listarts | orderBy:'views'" ng-hide="listart.language" >
+		<div  id="display_all" ng-repeat="listart in listarts | orderBy:'views'" ng-hide="listart.language" >
           <h4> {{listart.title}}</h4>
           <h5> {{listart.views}}
           	    <img ng-src="{{listart.images[0].thumb}}" ng-show="listart.canEdit">
