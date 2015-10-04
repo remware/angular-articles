@@ -1,12 +1,13 @@
 # Demo angular-articles
 
-This example reads articles form RoR backend ( or any other known REST API ) and pushes to frontend using angular js
+This example reads articles from any Json backend ( or any other known REST API ) and pushes content to angular js frontend
 
-## Technologies used
+## Technologies:
 - angular-translate for internationalization
-- bootstrap for responsiveness 
-- footables for tables
-- angular chart for charts
+- bootstrap for responsiveness
+- angular-route for microview routing
+- smart-table for tables
+- formly for forms
 
 ##Dependencies:
 - bower to manage dependencies

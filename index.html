@@ -4,25 +4,54 @@
     <title>List of articles (Angular JS)</title>
     <!-- Twiter bootstrap for basic styling. -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+	 <link rel="stylesheet" href="assets/custom.css" />
   </head>
   <body>
   	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
 	<script type="text/javascript" src="bower_components/angular-translate/angular-translate.js"></script>
-	<script type="text/javascript" src="bower_components/angular-route/angular-route.js">></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="bower_components/angular-smart-table/dist/smart-table.js"></script>
   	<script type="text/javascript" src="readarticles.js"></script>
     <div id="content" ng-controller="CommentsController">
 		<h3>
-			<b> Articles List using Angular JS</b>
+			<b> Articles List using Angular JS (+ smart-table )</b>
 		</h3>
 		<hr>
+        		
+		<table st-table="listarts" class="table">
+			<thead>
+			<tr>
+				<th></th>
+				<th st-sort="title">{{ 'TITLE' | translate }}</th>
+				<th st-sort="views">{{ 'VIEWS' | translate }}</th>
+				<th st-sort="author">{{ 'AUTHOR' | translate }}</th>
+				<th>{{ 'DESCRIBE' | translate }}</th>
+				<th>{{ 'COMMENTS' | translate }}</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="listart in listarts">
+				<td></td>
+				<td>
+					<span></span> 
+					 <div contenteditable="true" ng-model="listart.title" on-ready="addUpdatedItem(listart.title)">  
+                   	  {{listart.title }}
+                	 </div>	
 
-		<div  id="display_all" ng-repeat="listart in listarts | orderBy:'views'" ng-hide="listart.language" >
-          <h4> {{listart.title}}</h4>
-          <h5> {{listart.views}}
-          	    <img ng-src="{{listart.images[0].thumb}}" ng-show="listart.canEdit">
-          </h5>
-          <p> {{listart.description}}</p>
-		</div>		
+				</td>
+				<td>{{listart.views}}</td>
+				<td>{{listart.author | uppercase}}</td>
+				<td>{{listart.description }}</td>
+				<td ng-show="listart.canEdit"> 
+					<span></span> 
+					 <div contenteditable="true" ng-model="listart.comments[0]" on-ready="addUpdatedItem(listart.comments[0])">  
+                   	  {{listart.comments[0]}}
+                	 </div>
+					</td>
+			</tr>
+			</tbody>
+		</table>
+						
 	</div>
 	<hr>
 	<div id="all_comments">
@@ -30,8 +59,9 @@
 	</div> 
 	<hr>
     <div class="footer">
-		<a href="#/en"> english </a> <a href="#/es"> español </a>
-	</div>	
+		<a href="#/en" ng-click="changeLanguage('en')"> {{ 'BUTTON_LANG_EN' | translate }} </a> 
+		<a href="#/es" ng-click="changeLanguage('en')"> {{ 'BUTTON_LANG_ES' | translate }} </a>
+	</div>
   </body>
 </html>
 
